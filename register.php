@@ -1,0 +1,260 @@
+
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yalla Mechanic | Create Account</title>
+
+  <style>
+    *{
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    }
+
+    body{
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,176,0,0.15), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255,106,0,0.12), transparent 45%),
+        linear-gradient(135deg, #0a0f1f, #050913 60%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    body::before{
+      content: "⚙️ ⚙️ ⚙️";
+      position: absolute;
+      font-size: 160px;
+      opacity: 0.04;
+      top: -40px;
+      left: -40px;
+      pointer-events: none;
+    }
+
+    body::after{
+      content: "🔧 🛠️";
+      position: absolute;
+      font-size: 140px;
+      opacity: 0.04;
+      bottom: -30px;
+      right: -30px;
+      pointer-events: none;
+    }
+
+    .layout{
+      display: flex;
+      gap: 80px;
+      align-items: center;
+      z-index: 1;
+    }
+
+    .brand{
+      max-width: 360px;
+    }
+
+    .brand h1{
+      font-size: 34px;
+      margin-bottom: 14px;
+    }
+
+    .brand span{
+      color: #ffb000;
+    }
+
+    .brand p{
+      font-size: 14px;
+      opacity: 0.85;
+      line-height: 1.9;
+    }
+
+    .card{
+      width: 400px;
+      max-width: 100%;
+      background: rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 34px 32px 30px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .card h2{
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 30px;
+    }
+
+    .field{
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .field label{
+      font-size: 13px;
+      color: #ffb000;
+    }
+
+    .field input{
+      width: 100%;
+      padding: 14px;
+      border-radius: 16px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      background: rgba(255,255,255,0.95);
+    }
+
+    .field input:focus{
+      box-shadow: 0 0 0 4px rgba(255,176,0,0.35);
+    }
+
+    .row{
+      display: flex;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .row .field{
+      flex: 1;
+      min-width: 0; /* 🔑 هذا هو الحل */
+    }
+
+    .submit{
+      width: 100%;
+      padding: 15px;
+      border-radius: 18px;
+      border: none;
+      background: linear-gradient(135deg, #ffb000, #ff6a00);
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 6px;
+    }
+
+    .submit:hover{
+      filter: brightness(1.05);
+    }
+
+    .auth-links{
+      text-align: center;
+      margin-top: 22px;
+      font-size: 13px;
+      opacity: 0.85;
+    }
+
+    .auth-links a{
+      color: #ffb000;
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .auth-links a::after{
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(135deg, #ffb000, #ff6a00);
+      transition: 0.3s ease;
+    }
+
+    .auth-links a:hover::after{
+      width: 100%;
+    }
+
+    @media (max-width: 900px){
+      .layout{
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px){
+      .row{
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="layout">
+
+    <div class="brand">
+      <h1><span>Yalla</span> Mechanic</h1>
+      <p>
+        أنشئ حسابك الآن وابدأ باستخدام منصّة احترافية
+        لإدارة الشغل والتواصل مع الزبائن بسهولة وثقة.
+      </p>
+    </div>
+
+    <div class="card">
+        <?php
+
+if(isset($_GET['msg1'])){
+    echo "الحساب فعلا موجود";
+}
+
+if(isset($_GET['msg2'])){
+    echo "الباسورد غير مطابق";
+}
+
+if(isset($_GET['msg3'])){
+    echo "يجب اي يكون الباسورد اكثر من خمسة حروف او ارقام ";
+}
+?>
+      <h2>إنشاء حساب جديد</h2>
+      
+
+      <form action="create.php" method="POST">
+
+        <div class="field">
+          <label>اسم المستخدم</label>
+          <input type="text" name="username" required>
+        </div>
+
+        <div class="field">
+          <label>الاسم الكريم</label>
+          <input type="text" name="first" required>
+        </div>
+
+        <div class="field">
+          <label>اسم العيلة</label>
+          <input type="text" name="last" required>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>كلمة المرور</label>
+            <input type="password" name="pass1" required>
+          </div>
+          <div class="field">
+            <label>تأكيد كلمة المرور</label>
+            <input type="password" name="pass2" required>
+          </div>
+        </div>
+
+        <input type="submit" class="submit" value="إنشاء الحساب">
+
+      </form>
+
+      <div class="auth-links">
+        <a href="index.php">العودة إلى تسجيل الدخول</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+<
